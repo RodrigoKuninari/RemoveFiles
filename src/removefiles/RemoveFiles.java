@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 /**
@@ -28,6 +27,8 @@ public class RemoveFiles extends javax.swing.JFrame
     public RemoveFiles()
     {
         initComponents();
+        legend.setVisible(false);
+        progress.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -44,10 +45,16 @@ public class RemoveFiles extends javax.swing.JFrame
         buttonRemoveFiles = new javax.swing.JLabel();
         legenda = new javax.swing.JLabel();
         legend = new javax.swing.JLabel();
+        progress = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Remover Arquivos e Diretórios");
+        setMaximumSize(new java.awt.Dimension(356, 508));
+        setMinimumSize(new java.awt.Dimension(356, 508));
         setResizable(false);
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(336, 486));
+        jPanel1.setMinimumSize(new java.awt.Dimension(336, 486));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jLabel1.setText("<html>\n<h1>Remover Diretórios e Arquivos:</h1>\n<br>-GLASSFISH_HOME\\domains\\domain1\\generated\n<br>-GLASSFISH_HOME\\domains\\domain1\\osgi-cache\n</html>");
@@ -78,17 +85,20 @@ public class RemoveFiles extends javax.swing.JFrame
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(progress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(legend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(buttonRemoveFiles)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,8 +108,10 @@ public class RemoveFiles extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(buttonRemoveFiles)
                 .addGap(18, 18, 18)
+                .addComponent(progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(legend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,23 +261,27 @@ public class RemoveFiles extends javax.swing.JFrame
 
     public void executarGlassFish(String mensagem)
     {
-        final Progress barra = new Progress(mensagem);
-        barra.setVisible(true);
+        //final Progress barra = new Progress(mensagem);
+        //barra.setVisible(true);
         SwingWorker worker = new SwingWorker()
         {
 
             @Override
             protected Object doInBackground() throws Exception
             {
+                legend.setVisible(true);
+                progress.setVisible(true);
+                progress.setIndeterminate(true);
                 //executarProcesso(comando, waitBefore, waitAfter);
                 pararRemoverELimpar();
+                progress.setVisible(false);
                 return null;
             }
 
             @Override
             protected void done()
             {
-                barra.setVisible(false);
+                //barra.setVisible(false);
             }
 
         };
@@ -375,5 +391,6 @@ public class RemoveFiles extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel legend;
     private javax.swing.JLabel legenda;
+    private javax.swing.JProgressBar progress;
     // End of variables declaration//GEN-END:variables
 }
