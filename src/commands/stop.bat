@@ -1,0 +1,1 @@
+asadmin stop-domain domain1
