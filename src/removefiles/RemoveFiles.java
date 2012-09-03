@@ -60,6 +60,7 @@ public class RemoveFiles extends javax.swing.JFrame
         jLabel1.setText("<html>\n<h1>Remover Diretórios e Arquivos:</h1>\n<br>-GLASSFISH_HOME\\domains\\domain1\\generated\n<br>-GLASSFISH_HOME\\domains\\domain1\\osgi-cache\n</html>");
 
         buttonRemoveFiles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
+        buttonRemoveFiles.setToolTipText("Rodrigo Kuninari");
         buttonRemoveFiles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonRemoveFilesMouseClicked(evt);
@@ -137,10 +138,6 @@ public class RemoveFiles extends javax.swing.JFrame
     private void buttonRemoveFilesMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_buttonRemoveFilesMouseClicked
     {//GEN-HEADEREND:event_buttonRemoveFilesMouseClicked
         executarGlassFish("Processando...");
-        //executarGlassFish("Parando Servidor GlassFish...", "/commands/stop.bat");
-        //executarGlassFish("Iniciando Servidor GlassFish...", "/commands/start.bat");
-        //executarGlassFish("Iniciando Servidor GlassFish...", "asadmin start-domain domain1", 10, 0);
-        //executarGlassFish("Iniciando Servidor GlassFish...", "/commands/start.bat");
     }//GEN-LAST:event_buttonRemoveFilesMouseClicked
 
     private void buttonRemoveFilesMouseEntered(java.awt.event.MouseEvent evt)//GEN-FIRST:event_buttonRemoveFilesMouseEntered
@@ -200,28 +197,20 @@ public class RemoveFiles extends javax.swing.JFrame
             boolean delOsgiCache = deleteDir(osgiCache);
             if (delGenerated == true && delOsgiCache == true)
             {
-                //JOptionPane.showMessageDialog(null, "Diretórios e Arquivos Removidos com Sucesso!", "Diretórios e Arquivos Removidos com Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
             else if (delGenerated == true && delOsgiCache == false)
             {
-                //JOptionPane.showMessageDialog(null, "Falha ao Remover Diretório:\n"
-                //+ "C:\\glassfish3.1.2-web\\glassfish\\domains\\domain1\\osgi-cache!", "Falha ao Remover Diretórios e Arquivos!", JOptionPane.ERROR_MESSAGE);
                 legend.setText("<HTML>Falha ao Remover Diretório:<BR>"
                                + path + "\\domains\\domain1\\osgi-cache</HTML>");
             }
             else if (delGenerated == false && delOsgiCache == true)
             {
-                //JOptionPane.showMessageDialog(null, "Falha ao Remover Diretório:\n"
-                //+ "C:\\glassfish3.1.2-web\\glassfish\\domains\\domain1\\generated", "Falha ao Remover Diretórios e Arquivos!", JOptionPane.ERROR_MESSAGE);
                 legend.setText("<HTML>Falha ao Remover Diretório:<BR>"
                                + path + "\\domains\\domain1\\generated</HTML>");
             }
             else
             {
-                //JOptionPane.showMessageDialog(null, "Falha ao Remover Diretórios:\n"
-                //+ "C:\\glassfish3.1.2-web\\glassfish\\domains\\domain1\\generated\n"
-                //+ "C:\\glassfish3.1.2-web\\glassfish\\domains\\domain1\\osgi-cache", "Falha ao Remover Diretórios e Arquivos!", JOptionPane.ERROR_MESSAGE);
                 legend.setText("<HTML>Falha ao Remover Diretórios:<BR>"
                                + path + "\\domains\\domain1\\generated<BR>"
                                + path + "\\domains\\domain1\\osgi-cache</HTML>");
@@ -229,7 +218,6 @@ public class RemoveFiles extends javax.swing.JFrame
         }
         else
         {
-            //JOptionPane.showMessageDialog(null, "Falha ao Remover Diretório!\nDiretórios não existem!", "Falha ao Remover Diretórios e Arquivos!", JOptionPane.ERROR_MESSAGE);
             legend.setText("<HTML>Falha ao Remover Diretório!<BR>Diretórios não existem!</HTML>");
         }
         return false;
@@ -261,8 +249,6 @@ public class RemoveFiles extends javax.swing.JFrame
 
     public void executarGlassFish(String mensagem)
     {
-        //final Progress barra = new Progress(mensagem);
-        //barra.setVisible(true);
         SwingWorker worker = new SwingWorker()
         {
 
@@ -272,7 +258,6 @@ public class RemoveFiles extends javax.swing.JFrame
                 legend.setVisible(true);
                 progress.setVisible(true);
                 progress.setIndeterminate(true);
-                //executarProcesso(comando, waitBefore, waitAfter);
                 pararRemoverELimpar();
                 progress.setVisible(false);
                 return null;
