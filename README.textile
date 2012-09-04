@@ -1,0 +1,22 @@
+h1. *RemoveFiles*
+
+h2. _Descrição_
+
+RemoveFiles é um aplicativo simples para Limpeza do Cache do Servidor de Aplicação Glassfish no ambiente Windows.
+Ele simplifica a sequência de:
+* Parar o Servidor;
+* Excluir os Diretórios *generated* e *osgi-cache*;
+* Iniciar o Servidor.
+
+em apenas um clique.
+
+h2. _Tecnologias/Linguagens Utilizadas_
+
+* *IDE*: NetBeans 7.1
+* *Linguagem*: Java
+
+h2. _Frameworks_
+
+h2. _Configurações_
+
+Para isso, é necessário incluir a Variável de Ambiente *GLASSFISH_HOME* com o Valor referenciando o Diretório do Glassfish, como por exemplo: C:\Program Files\glassfish3.1.2\glassfish

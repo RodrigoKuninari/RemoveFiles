@@ -1,1 +1,0 @@
-asadmin start-domain domain1
